@@ -1,1 +1,10 @@
 
+
+import pandas as pd 
+df = pd.read_csv('C:/Users/patri/Downloads/dati_pandas_blog.csv')#Poi carichiamo il nostro file .csv
+
+# Per vedere i dati che abbiamo caricato, basta scrivere:
+print(df)
+
+##🔍Seconda fase: Esplorazione dei dati
+
