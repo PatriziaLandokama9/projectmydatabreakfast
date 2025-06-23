@@ -1,0 +1,23 @@
+## come scrivere pandas su pyhton 
+import pandas as pd
+
+# Creazione di un DataFrame da un dizionario
+
+data = {
+    "parolachiave1": ["Anna", "Luca", "Marco", "Giulia"],  # Nomi
+    "parolachiave2": [25, 30, 28, 22],                     # Età
+    "parolachiave3": ["Roma", "Milano", "Torino", "Napoli"],  # Città
+    "parolachiave4": [2500, 3000, 2700, 2200],             # Stipendio
+    "parolachiave5": ["2025-05-02", "2025-01-30", "2025-10-27", "2025-10-22"],  # Date corrette
+    "parolachiave6id": ["id_2500", "id_3000", "id_2700", "id_2200"]  # ID come stringhe
+
+}
+
+
+
+
+# Creazione del DataFrame
+df = pd.DataFrame(data)
+
+# Visualizzazione del DataFrame
+print(df)
