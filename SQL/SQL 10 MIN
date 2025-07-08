@@ -1,0 +1,72 @@
+🥣 MyDataBreakfast — SQL in 10 Minutes: The Beginner’s Guide 😎
+Hi everyone, let me introduce myself and my blog: MyDataBreakfast
+Have you heard about SQL but don’t know where to start? You’re in the right place! In this mini-blog, 
+I’ll explain what SQL is and how to start using it in just 10 minutes — even if you’re starting from scratch.
+
+What is SQL?
+SQL (Structured Query Language) is a language used to communicate with databases. It allows you to:
+Read data
+Insert new data
+Update or delete data
+Create tables and structures
+Let’s go over the main commands with clear examples!
+
+1. SELECT — Read Data
+SELECT * FROM users;
+🔍 What it does: Shows all data from the table called “users”.
+
+SELECT name, email FROM users;
+👀 Shows only the name and email columns.
+-------------------------------------------------------
+2. INSERT — Insert Data
+INSERT INTO users (name, email)  
+VALUES ('Marco', 'marco@email.com');
+➕ Adds a new user to the “users” table.
+------------------------------------------------------
+3. UPDATE — Update Data
+UPDATE users  
+SET email = 'new@email.com'  
+WHERE name = 'Marco';
+🔁 Changes Marco’s email.
+-----------------------------------------------------
+4. DELETE — Delete Data
+DELETE FROM users  
+WHERE name = 'Marco';
+🗑️ Removes the user named Marco.
+----------------------------------------------------
+5. WHERE — Filter Data
+SELECT * FROM users  
+WHERE name = 'Luca';
+🎯 Shows only users named Luca.
+----------------------------------------------------
+Bonus: CREATE TABLE — Create a Table
+CREATE TABLE users (  
+  id INT PRIMARY KEY,  
+  name VARCHAR(100),  
+  email VARCHAR(100)  
+);
+🏗️ Creates a table with three columns: id, name, and email.
+-------------------------------------------------------------
+Conclusion 🔥🔥🔥
+SQL is a powerful tool, but start small and you’ll see how useful it can be. In just 10 minutes, you’ve learned how to:
+Read 🕮
+Write ✒
+Update 😉
+Delete data 🧹
+🙌 Thanks for Surviving SQL with Me! 😄
+Wow, you made it to the end — and hopefully without screaming at your keyboard! 😅
+Seriously though, thanks for reading this little slice of MyDataBreakfast. I created this space because, like many beginners, I once stared at an Excel sheet and thought:
+
+“What even is this mess… and where do I start?” 🫠
+
+This blog is for people like us — curious, confused, and maybe slightly caffeine-addicted ☕ — who are trying to make sense of data, one bite at a time.
+
+I’ll be here figuring it out alongside you: learning, failing (a little), Googling a lot, and sharing everything I discover.
+Together, we’ll build a solid foundation that might even lead to cool little projects… and who knows, maybe a data-powered future! 💻✨
+
+So if you’re lost, you’re in the right place. Stick around — it’s gonna be messy, but fun.
+And hey, at least we’re not alone. 😉
+
+✨by Patrizia Lando Kama
+
+my blog:🥣MyDataBreakfast
