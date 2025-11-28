@@ -1,1 +1,162 @@
+CREATE TABLE SpeSa_D_Nato(
+anno INT,
+regione VARCHAR(250),
+paese VARCHAR(250),
+spese_Decimal_mld DECIMAL(10,1)
+);
+-- In questo momento insieriamo i dati 
+INSERT INTO SpeSa_D_Nato(anno, regione, paese, spese_Decimal_mld) VALUES
+(2013,'Nord America', 'USA',626.0),
+(2023, 'Nord America','USA',754.0),
+(2013, 'Europa', 'Europa+Canada', 250.0),
+(2023, 'Europa', 'Europa+Canada', 430.0),
+(2013, 'Totale NATO', 'NATO', 910.0),
+(2023, 'Totale NATO', 'NATO', 1180.0);
+
+
+SELECT * FROM SpeSa_D_Nato;
+
+-- Ora possiamo manipolare i dati 
+--MAX 
+SELECT MAX(spese_Decimal_mld) AS Max_SpeSa_D_Nato FROM SpeSa_D_Nato;
+
+-- Vuoi sapere chi ha speso di piu tra tutti 
+SELECT anno, regione, paese, spese_Decimal_mld
+FROM SpeSa_D_Nato
+WHERE spese_Decimal_mld = (
+    SELECT MAX(spese_Decimal_mld) FROM SpeSa_D_Nato
+);
+ 
+ -- min 
+ SELECT MIN(spese_Decimal_mld) AS Min_SpeSa_D_Nato FROM SpeSa_D_Nato;
+
+ -- COUNT conteggia le righe 
+ SELECT COUNT(spese_Decimal_mld) AS Count_SpeSa_D_Nato FROM SpeSa_D_Nato;
+ SELECT COUNT(*) AS Count_SpeSa_D_Nato FROM SpeSa_D_Nato;
+
+ --somma 
+  SELECT SUM(spese_Decimal_mld) AS Sum_SpeSa_D_Nato FROM SpeSa_D_Nato;
+
+ --Spesa Totale anno 
+SELECT anno, SUM(spese_Decimal_mld) AS anno_SpeSa_D_Nato FROM SpeSa_D_Nato GROUP BY anno;
+
+SELECT anno, SUM(spese_Decimal_mld) AS Totale_Per_Anno
+FROM SpeSa_D_Nato
+GROUP BY anno;
+
+--MEDIA 
+SELECT  AVG(spese_Decimal_mld) AS  Avg_SpeSa_D_Nato FROM SpeSa_D_Nato;
+
+ --Spesa Media Regione
+SELECT regione, AVG(spese_Decimal_mld) AS media_SpeSa_D_Nato  FROM SpeSa_D_Nato GROUP BY regione;
+
+SELECT regione, AVG(spese_Decimal_mld) AS  Avg_SpeSa_D_Regione
+FROM SpeSa_D_Nato
+GROUP BY regione;
+--Ordinamento decrescente per spese
+SELECT * FROM SpeSa_D_Nato ORDER BY spese_Decimal_mld DESC;
+
+--Ordinamento crescente per spese
+SELECT * FROM SpeSa_D_Nato ORDER BY spese_Decimal_mld ASC;
+
+--Mostra le spese maggiori di 500 mld
+SELECT * FROM SpeSa_D_Nato WHERE spese_Decimal_mld > 500;
+
+--Mostra le spese inferiori a 300 mld
+SELECT * FROM SpeSa_D_Nato WHERE spese_Decimal_mld < 300;
+
+--Mostra le spese uguale a 300  or 754
+SELECT * FROM  SpeSa_D_Nato WHERE spese_Decimal_mld = 300; 
+SELECT * FROM  SpeSa_D_Nato WHERE spese_Decimal_mld = 754;
+
+--Mostra solo i dati del 2023
+SELECT * FROM  SpeSa_D_Nato WHERE anno ='2023';
+ 
+--Mostra solo i dati del paese USA 
+SELECT * FROM SpeSa_D_Nato WHERE paese ='USA';
+
+SELECT * FROM SpeSa_D_Nato WHERE regione ='Nord America';
+
+--Mostra solo i dati della regione 
+SELECT * FROM SpeSa_D_Nato WHERE regione='Europa';
+SELECT * FROM SpeSa_D_Nato WHERE regione ='Nord America';
+
+--Filtri avanzati con OR
+ SELECT * FROM SpeSa_D_Nato WHERE regione='Europa' OR  regione='USA';
+ SELECT * FROM SpeSa_D_Nato WHERE regione='Europa' OR  paese='Europa';
+ SELECT * FROM SpeSa_D_Nato WHERE regione='Nord America' OR  regione='Europa';
+ SELECT * FROM SpeSa_D_Nato WHERE anno = 2023 OR spese_Decimal_mld > 500;
+ SELECT * FROM SpeSa_D_Nato WHERE anno = 2023 OR spese_Decimal_mld <500;
+ SELECT * FROM SpeSa_D_Nato WHERE spese_Decimal_mld > 500 OR anno = 2023;
+ -- AND 
+SELECT * FROM SpeSa_D_Nato WHERE anno = 2023 AND spese_Decimal_mld > 500;
+SELECT * FROM SpeSa_D_Nato WHERE anno = 2023 AND spese_Decimal_mld <500;
+SELECT * FROM SpeSa_D_Nato WHERE spese_Decimal_mld > 500 AND anno = 2023;
+SELECT * FROM SpeSa_D_Nato WHERE regione = 'Europa' AND paese = 'Europa+Canada';
+SELECT * FROM SpeSa_D_Nato WHERE regione = 'Nord America' AND paese = 'USA';
+SELECT * FROM SpeSa_D_Nato WHERE anno = 2023 AND spese_Decimal_mld = 754;
+
+--Paese con la spesa più alta mysql
+--SELECT * FROM SpeSa_D_Nato ORDER BY spese_Decimal_mld DESC LIMIT 1;
+--SELECT * FROM SpeSa_D_Nato ORDER BY spese_Decimal_mld ASC LIMIT 1;
+
+--Come trovare il massimo-minimo in SQL Server
+SELECT TOP 1 * FROM SpeSa_D_Nato ORDER BY spese_Decimal_mld DESC;-- ultima riga
+SELECT TOP 1 * FROM SpeSa_D_Nato ORDER BY spese_Decimal_mld ASC; -- prima  riga
+
+SELECT TOP 3 * FROM SpeSa_D_Nato ORDER BY spese_Decimal_mld DESC; -- ultime tre righe 
+SELECT TOP 3 * FROM SpeSa_D_Nato ORDER BY spese_Decimal_mld ASC; -- prime tre righe 
+
+SELECT TOP 2 * FROM SpeSa_D_Nato ORDER BY spese_Decimal_mld DESC; -- ultime due righe 
+SELECT TOP 2 * FROM SpeSa_D_Nato ORDER BY spese_Decimal_mld ASC; --prime tre righe
+
+SELECT * FROM SpeSa_D_Nato;
+
+
+--Alias e leggibilità 
+SELECT s.anno, s.regione, s.paese, s.spese_Decimal_mld
+FROM SpeSa_D_Nato AS s 
+WHERE s.anno = 2023;
+
+SELECT s.anno, s.regione, s.paese, s.spese_Decimal_mld
+FROM SpeSa_D_Nato AS s 
+WHERE s.regione = 'Nord America';
+
+--BETWEEN (per intervalli)
+SELECT * FROM SpeSa_D_Nato WHERE spese_Decimal_mld BETWEEN 400 AND 800;
+
+--IN (per elenchi multipli)
+SELECT * FROM SpeSa_D_Nato WHERE regione IN ('Europa', 'Nord America');
+
+--NOT (esclusioni)
+SELECT * 
+FROM SpeSa_D_Nato
+WHERE regione NOT IN ('Totale NATO');
+
+SELECT * 
+FROM SpeSa_D_Nato
+WHERE regione NOT IN ('Europa', 'Nord America');-- abbiamo escluso Europa e Nord Aerica
+
+--DISTINCT (valori unici)
+SELECT DISTINCT * FROM SpeSa_D_Nato;
+
+SELECT DISTINCT regione FROM SpeSa_D_Nato;
+
+--LIKE (ricerca testuale)
+SELECT * FROM SpeSa_D_Nato WHERE paese LIKE '%USA%';
+SELECT * FROM SpeSa_D_Nato WHERE paese LIKE '%t%';
+
+
+--Funzione CASE (condizione logica)
+SELECT anno, paese,
+    CASE 
+        WHEN spese_Decimal_mld > 700 THEN 'Alta Spesa'
+        WHEN spese_Decimal_mld BETWEEN 400 AND 700 THEN 'Media Spesa'
+        ELSE 'Bassa Spesa'
+    END AS Categoria_Spesa
+FROM SpeSa_D_Nato;
+
+--ORDER BY combinato
+SELECT * FROM SpeSa_D_Nato ORDER BY anno DESC, spese_Decimal_mld DESC;-- ultimo diventa primo
+SELECT * FROM SpeSa_D_Nato ORDER BY anno ASC, spese_Decimal_mld ASC ;--primo diventa primo
 
